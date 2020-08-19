@@ -9,7 +9,7 @@ from fastai import *
 from fastai.vision import *
 
 #model_file_url = 'https://www.dropbox.com/s/y4kl2gv1akv7y4i/stage-2.pth?raw=1'
-model_file_url = 'https://drive.google.com/file/d/1qoffxILP4_1IGjj5D4Uk_koYycyD9HjB/view?usp=sharing'
+model_file_url = 'https://www.googleapis.com/drive/v3/files/1qoffxILP4_1IGjj5D4Uk_koYycyD9HjB?alt=media&key=AIzaSyApXGaxDj8HoyhQOQOPqo6kw2kG1fcLc7s'
 model_file_name = 'model'
 #classes = ['black', 'grizzly', 'teddys']
 classes = ['mount_fuji', 'mount_hood', 'mount_rainier']
@@ -30,7 +30,8 @@ async def setup_learner():
     await download_file(model_file_url, path/'models'/f'{model_file_name}.pth')
     data_bunch = ImageDataBunch.single_from_classes(path, classes,
         ds_tfms=get_transforms(), size=224).normalize(imagenet_stats)
-    learn = cnn_learner(data_bunch, models.resnet34, pretrained=False)
+#    learn = cnn_learner(data_bunch, models.resnet34, pretrained=False)
+    learn = cnn_learner(data_bunch, models.resnet50, pretrained=False)
     learn.load(model_file_name)
     return learn
 
