@@ -9,7 +9,8 @@ from fastai import *
 from fastai.vision import *
 
 #model_file_url = 'https://www.dropbox.com/s/y4kl2gv1akv7y4i/stage-2.pth?raw=1'
-model_file_url = 'https://www.googleapis.com/drive/v3/files/1vX-NGwmLClt_q9u-xVk1k_ir1MF8mWYJ?alt=media&key=AIzaSyApXGaxDj8HoyhQOQOPqo6kw2kG1fcLc7s'
+#model_file_url = 'https://www.googleapis.com/drive/v3/files/1vX-NGwmLClt_q9u-xVk1k_ir1MF8mWYJ?alt=media&key=AIzaSyApXGaxDj8HoyhQOQOPqo6kw2kG1fcLc7s'
+model_file_url = 'https://www.googleapis.com/drive/v3/files/1Oj5C7RFfQOYijTC3wVWnf14X4K56jvEc?alt=media&key=AIzaSyApXGaxDj8HoyhQOQOPqo6kw2kG1fcLc7s'
 model_file_name = 'model'
 #classes = ['black', 'grizzly', 'teddys']
 classes = ['mount_fuji', 'mount_hood', 'mount_rainier']
