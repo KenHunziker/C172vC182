@@ -5,15 +5,15 @@ from starlette.middleware.cors import CORSMiddleware
 import uvicorn, aiohttp, asyncio
 from io import BytesIO
 
-from fastai import *
-from fastai.vision import *
+from fastai2 import *
+from fastai2.vision import *
 
 #model_file_url = 'https://www.dropbox.com/s/y4kl2gv1akv7y4i/stage-2.pth?raw=1'
 #model_file_url = 'https://www.googleapis.com/drive/v3/files/1vX-NGwmLClt_q9u-xVk1k_ir1MF8mWYJ?alt=media&key=AIzaSyApXGaxDj8HoyhQOQOPqo6kw2kG1fcLc7s'
-model_file_url = 'https://www.googleapis.com/drive/v3/files/1Oj5C7RFfQOYijTC3wVWnf14X4K56jvEc?alt=media&key=AIzaSyApXGaxDj8HoyhQOQOPqo6kw2kG1fcLc7s'
+model_file_url = 'https://www.googleapis.com/drive/v3/files/1sJZtMsa7EcgI88bQAq6lNIJErhnArTPF?alt=media&key=AIzaSyApXGaxDj8HoyhQOQOPqo6kw2kG1fcLc7s'
 model_file_name = 'model'
 #classes = ['black', 'grizzly', 'teddys']
-classes = ['mount_fuji', 'mount_hood', 'mount_rainier']
+classes = ['Cessna 172','Cessna 182']
 path = Path(__file__).parent
 
 app = Starlette()
@@ -31,7 +31,7 @@ async def setup_learner():
     await download_file(model_file_url, path/'models'/f'{model_file_name}.pth')
     data_bunch = ImageDataBunch.single_from_classes(path, classes,
         ds_tfms=get_transforms(), size=224).normalize(imagenet_stats)
-    learn = cnn_learner(data_bunch, models.resnet34, pretrained=False)
+    learn = cnn_learner(data_bunch, models.resnet18, pretrained=False)
     learn.load(model_file_name)
     return learn
 
